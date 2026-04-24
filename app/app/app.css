@@ -1,0 +1,301 @@
+/* Scoped Remit app styles. All rules live under .remit-app so they don't
+   leak into the landing page (which also defines .btn, .logo-mark, .tweaks-panel, ...). */
+
+.remit-app {
+  --bg: #06060a;
+  --bg-2: #0a0a10;
+  --surface: #0e0e16;
+  --surface-2: #13131c;
+  --surface-3: #181824;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --text: #ededf2;
+  --text-2: #9a9aab;
+  --text-3: #60606e;
+  --accent: #b09dff;
+  --accent-2: #7cf7d3;
+  --accent-3: #ff9ad5;
+  --mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-geist), -apple-system, sans-serif;
+  font-feature-settings: "tnum", "cv11";
+  -webkit-font-smoothing: antialiased;
+  height: 100vh;
+  overflow: hidden;
+  background-image:
+    radial-gradient(1200px 700px at 10% -20%, rgba(176, 157, 255, 0.05), transparent 60%),
+    radial-gradient(900px 500px at 100% 100%, rgba(124, 247, 211, 0.03), transparent 60%);
+}
+.remit-app[data-theme="light"] {
+  --bg: #f6f5f1;
+  --bg-2: #eeede7;
+  --surface: #ffffff;
+  --surface-2: #f1f0ea;
+  --surface-3: #e8e7e1;
+  --border: rgba(10, 10, 20, 0.08);
+  --border-strong: rgba(10, 10, 20, 0.15);
+  --text: #0b0b12;
+  --text-2: #51515e;
+  --text-3: #8b8b98;
+  --accent: #6b4dff;
+  --accent-2: #06a57f;
+  --accent-3: #d7327b;
+}
+
+.remit-app * { box-sizing: border-box; }
+.remit-app .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.remit-app .text-right { text-align: right; }
+.remit-app ::selection { background: var(--accent); color: #0a0a10; }
+.remit-app button, .remit-app input, .remit-app select, .remit-app textarea { font-family: inherit; color: inherit; }
+.remit-app button { cursor: pointer; }
+
+/* Shell */
+.remit-app .app-shell { display: grid; grid-template-columns: 232px 1fr; height: 100vh; overflow: hidden; }
+.remit-app .app-main { overflow-y: auto; height: 100vh; }
+
+/* Sidebar */
+.remit-app .sidebar { border-right: 1px solid var(--border); padding: 14px 10px 12px; display: flex; flex-direction: column; gap: 3px; background: var(--bg-2); }
+.remit-app .side-brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 14px; font-size: 14px; letter-spacing: -0.02em; }
+.remit-app .logo-mark { width: 18px; height: 18px; border-radius: 5px; background: conic-gradient(from 180deg at 50% 50%, var(--accent), var(--accent-2), var(--accent-3), var(--accent)); position: relative; }
+.remit-app .logo-mark::after { content: ""; position: absolute; inset: 3px; border-radius: 3px; background: var(--bg-2); }
+
+.remit-app .side-search { display: flex; align-items: center; gap: 8px; padding: 7px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: 12.5px; margin-bottom: 10px; transition: border-color 0.2s, background 0.2s; color: inherit; }
+.remit-app .side-search:hover { border-color: var(--border-strong); background: var(--surface-2); }
+
+.remit-app .side-nav { display: flex; flex-direction: column; gap: 1px; }
+.remit-app .side-item { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 7px; background: transparent; border: none; font-size: 13px; transition: background 0.15s, color 0.15s; color: var(--text-2); }
+.remit-app .side-item:hover { background: var(--surface); color: var(--text); }
+.remit-app .side-item.active { background: var(--surface-2); color: var(--text); }
+.remit-app .side-item.active .side-icon { color: var(--accent); }
+.remit-app .side-icon { width: 14px; text-align: center; color: var(--text-3); font-size: 12px; }
+.remit-app .side-kbd, .remit-app .side-count { font-family: var(--mono); font-size: 10.5px; color: var(--text-3); padding: 2px 5px; background: var(--surface); border-radius: 4px; border: 1px solid var(--border); }
+.remit-app .side-count { color: var(--text-2); }
+.remit-app .side-sep { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-3); padding: 18px 10px 6px; font-family: var(--mono); }
+.remit-app .side-foot { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border); }
+.remit-app .side-user { display: flex; align-items: center; gap: 10px; padding: 6px; border-radius: 7px; transition: background 0.2s; }
+.remit-app .side-user:hover { background: var(--surface); cursor: pointer; }
+
+/* Screen */
+.remit-app .screen { padding: 28px 36px 80px; max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+.remit-app .screen-hdr { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 6px; }
+.remit-app .screen-crumb { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.12em; font-family: var(--mono); margin-bottom: 8px; }
+.remit-app .screen-title { font-size: 22px; letter-spacing: -0.02em; font-weight: 500; margin: 0; color: var(--text); }
+
+.remit-app .picker { padding: 6px 10px; border: 1px solid var(--border); border-radius: 7px; font-size: 12px; color: var(--text-2); font-family: var(--mono); cursor: pointer; transition: border-color 0.2s; background: transparent; }
+.remit-app .picker:hover { border-color: var(--border-strong); }
+
+/* Buttons (scoped so landing's pill .btn doesn't leak in) */
+.remit-app .btn { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 7px; font-size: 12.5px; border: 1px solid var(--border-strong); background: transparent; color: var(--text); transition: transform 0.15s, background 0.2s, border-color 0.2s; font-family: inherit; }
+.remit-app .btn:hover:not(:disabled) { background: var(--surface); transform: translateY(-1px); }
+.remit-app .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.remit-app .btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.remit-app .btn-primary:hover:not(:disabled) { background: var(--text); }
+.remit-app .btn-accent { background: var(--accent); color: #0a0a10; border-color: var(--accent); font-weight: 500; box-shadow: 0 8px 28px -10px rgba(176, 157, 255, 0.7); }
+.remit-app .btn-accent:hover:not(:disabled) { box-shadow: 0 12px 36px -8px rgba(176, 157, 255, 0.9); }
+.remit-app .btn-ghost { border-color: var(--border); color: var(--text-2); }
+.remit-app .link-btn { background: transparent; border: none; color: var(--accent); font-size: 12px; padding: 2px 4px; border-radius: 4px; transition: color 0.15s; font-family: inherit; }
+.remit-app .link-btn:hover { color: var(--text); }
+.remit-app .icon-btn { background: transparent; border: none; color: var(--text-3); font-size: 20px; padding: 0 8px; line-height: 1; transition: color 0.2s; }
+.remit-app .icon-btn:hover { color: var(--text); }
+
+.remit-app .kbd { font-family: var(--mono); font-size: 10.5px; padding: 1px 5px; border-radius: 4px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); color: var(--text-3); margin-left: 4px; }
+.remit-app[data-theme="light"] .kbd { background: rgba(0, 0, 0, 0.04); }
+
+/* Tiles */
+.remit-app .tiles-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.remit-app .tile { padding: 14px 14px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; transition: border-color 0.2s, transform 0.2s; }
+.remit-app .tile:hover { border-color: var(--border-strong); transform: translateY(-1px); }
+.remit-app .tile-label { font-size: 10.5px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--mono); margin-bottom: 6px; }
+.remit-app .tile-value { font-size: 20px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; margin-bottom: 2px; }
+.remit-app .tile-sub { font-size: 11px; font-family: var(--mono); }
+
+/* Cards */
+.remit-app .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.remit-app .card-hdr { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 12px; color: var(--text-2); }
+.remit-app .card-title { font-weight: 500; color: var(--text); font-size: 13px; display: inline-flex; align-items: center; }
+.remit-app .empty-card .card-hdr { border-bottom: none; }
+
+.remit-app .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 12px; }
+.remit-app .split-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; }
+.remit-app .col-gap { display: flex; flex-direction: column; gap: 12px; }
+
+/* Clients grid */
+.remit-app .clients-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 12px; }
+.remit-app .client-card { padding: 12px; border: 1px solid var(--border); border-radius: 9px; transition: border-color 0.2s, transform 0.2s, background 0.2s; cursor: pointer; background: var(--bg-2); }
+.remit-app .client-card:hover { border-color: var(--border-strong); transform: translateY(-1px); background: var(--surface-2); }
+.remit-app .client-card.placeholder { border-style: dashed; background: transparent; }
+.remit-app .country-badge { font-size: 10px; color: var(--text-3); font-family: var(--mono); display: inline-flex; align-items: center; gap: 4px; }
+.remit-app .micro-label { font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--mono); margin-bottom: 3px; }
+.remit-app .micro-value { font-size: 13px; color: var(--text); letter-spacing: -0.01em; }
+
+/* Invoice rows */
+.remit-app .inv-list { padding: 6px; }
+.remit-app .inv-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 7px; cursor: pointer; font-size: 12.5px; transition: background 0.15s; }
+.remit-app .inv-row:hover { background: var(--surface-2); }
+.remit-app .inv-num { width: 68px; color: var(--text-2); font-size: 11.5px; }
+.remit-app .inv-client { flex: 1; }
+.remit-app .inv-amt { width: 80px; text-align: right; }
+
+/* Status badge */
+.remit-app .status-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-family: var(--mono); padding: 3px 8px; border-radius: 5px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.06); }
+.remit-app .sb-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+/* Filter bar / table */
+.remit-app .filter-bar { display: flex; gap: 6px; padding: 4px 0 14px; border-bottom: 1px solid var(--border); align-items: center; }
+.remit-app .chip { font-size: 11.5px; padding: 5px 10px; border-radius: 999px; background: transparent; border: 1px solid var(--border); color: var(--text-2); transition: all 0.15s; font-family: var(--mono); }
+.remit-app .chip:hover { border-color: var(--border-strong); color: var(--text); }
+.remit-app .chip.active { background: var(--surface-2); color: var(--text); border-color: var(--border-strong); }
+
+.remit-app .table { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 12.5px; }
+.remit-app .table-hdr { display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-bottom: 1px solid var(--border); font-size: 10.5px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--mono); background: var(--bg-2); }
+.remit-app .table-row { display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.12s; }
+.remit-app .table-row:last-child { border-bottom: none; }
+.remit-app .table-row:hover { background: var(--surface-2); }
+.remit-app .table-row.selected { background: rgba(176, 157, 255, 0.06); }
+
+/* Line items */
+.remit-app .line-items { padding: 2px 0 4px; }
+.remit-app .li-hdr { display: flex; gap: 10px; padding: 10px 18px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); font-size: 10.5px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--mono); }
+.remit-app .li-row { display: flex; gap: 10px; padding: 10px 18px; border-bottom: 1px solid var(--border); font-size: 12.5px; align-items: center; }
+.remit-app .li-row:last-child { border-bottom: none; }
+.remit-app .li-row.adj { color: var(--text-2); background: rgba(255, 255, 255, 0.02); }
+.remit-app .li-row.verify { background: rgba(245, 199, 106, 0.04); position: relative; }
+.remit-app .li-row.verify::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #f5c76a; }
+.remit-app .li-row.editable { padding: 6px 18px; }
+.remit-app .li-input { width: 100%; background: transparent; border: 1px solid transparent; padding: 4px 8px; border-radius: 5px; font-size: 12.5px; transition: border-color 0.15s, background 0.15s; color: inherit; }
+.remit-app .li-input:hover { background: var(--surface-2); }
+.remit-app .li-input:focus { outline: none; border-color: var(--accent); background: var(--surface-2); }
+.remit-app .add-line { display: flex; align-items: center; padding: 10px 18px; font-size: 12.5px; color: var(--text-3); background: transparent; border: none; border-top: 1px dashed var(--border); width: 100%; text-align: left; transition: color 0.15s, background 0.15s; }
+.remit-app .add-line:hover { color: var(--text); background: var(--surface-2); }
+
+/* Totals */
+.remit-app .totals { padding: 14px 18px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+.remit-app .totals > div { display: flex; gap: 24px; font-size: 12.5px; min-width: 260px; justify-content: space-between; }
+.remit-app .totals > div > span:first-child { color: var(--text-2); }
+.remit-app .totals .total { font-size: 14px; padding-top: 8px; margin-top: 4px; border-top: 1px solid var(--border); width: 260px; color: var(--text); font-weight: 500; }
+
+/* Meta grid */
+.remit-app .meta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; padding: 16px 18px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-2); }
+
+/* Client pick grid */
+.remit-app .client-pick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 14px; }
+.remit-app .client-pick { display: flex; align-items: center; gap: 14px; padding: 14px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; transition: all 0.2s; text-align: left; color: inherit; width: 100%; font-family: inherit; }
+.remit-app .client-pick:hover { border-color: var(--accent); transform: translateY(-2px); background: var(--surface-2); box-shadow: 0 8px 24px -12px rgba(176, 157, 255, 0.4); }
+.remit-app .pick-key { width: 28px; height: 28px; border-radius: 7px; background: var(--surface); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-2); }
+.remit-app .client-pick:hover .pick-key { background: var(--accent); color: #0a0a10; border-color: var(--accent); }
+
+/* Seg toggle */
+.remit-app .seg-toggle { display: flex; gap: 2px; padding: 2px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 7px; }
+.remit-app .seg-toggle button { padding: 4px 10px; background: transparent; border: none; border-radius: 5px; font-size: 11.5px; color: var(--text-3); transition: all 0.15s; }
+.remit-app .seg-toggle button.active { background: var(--surface-2); color: var(--text); }
+
+/* FX readout */
+.remit-app .fx-readout { padding: 12px 16px; font-size: 12.5px; }
+.remit-app .fx-l { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--border); color: var(--text-2); }
+.remit-app .fx-l:last-child { border-bottom: none; }
+.remit-app .fx-l.muted { color: var(--text-3); }
+.remit-app .fx-l.total { padding-top: 10px; margin-top: 4px; border-top: 1px solid var(--border); border-bottom: none; color: var(--text); font-weight: 500; font-size: 13.5px; }
+.remit-app .badge-ok { font-size: 10.5px; padding: 2px 8px; border-radius: 4px; background: rgba(124, 247, 211, 0.12); color: var(--accent-2); font-family: var(--mono); }
+.remit-app .badge-muted { font-size: 10.5px; color: var(--text-3); font-family: var(--mono); }
+
+/* Activity */
+.remit-app .activity { padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
+.remit-app .act { display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; }
+.remit-app .act-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-3); margin-top: 6px; flex-shrink: 0; }
+.remit-app .act-ts { font-size: 10.5px; color: var(--text-3); margin-top: 2px; }
+
+/* Docs */
+.remit-app .docs { padding: 10px 16px; display: flex; flex-direction: column; gap: 8px; }
+.remit-app .doc { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 7px; font-size: 12.5px; transition: border-color 0.15s, background 0.15s; }
+.remit-app .doc:hover { border-color: var(--border-strong); background: var(--surface-2); }
+
+/* Tabs */
+.remit-app .tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+.remit-app .tab { padding: 8px 14px; background: transparent; border: none; font-size: 12.5px; color: var(--text-3); text-transform: capitalize; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.2s; font-family: inherit; }
+.remit-app .tab:hover { color: var(--text-2); }
+.remit-app .tab.active { color: var(--text); border-bottom-color: var(--accent); }
+
+/* Form */
+.remit-app .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 18px; }
+.remit-app .form-grid .span-2 { grid-column: span 2; }
+.remit-app .field { width: 100%; background: var(--bg-2); border: 1px solid var(--border); border-radius: 7px; padding: 8px 10px; font-size: 13px; color: var(--text); transition: border-color 0.15s; }
+.remit-app .field:focus { outline: none; border-color: var(--accent); }
+.remit-app textarea.field { font-family: inherit; resize: vertical; }
+.remit-app select.field { cursor: pointer; appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--text-3) 50%), linear-gradient(-45deg, transparent 50%, var(--text-3) 50%); background-position: calc(100% - 14px) 50%, calc(100% - 8px) 50%; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; padding-right: 28px; }
+
+.remit-app .radio-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.remit-app .radio-card { display: flex; gap: 10px; padding: 12px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 9px; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.remit-app .radio-card:hover { border-color: var(--border-strong); }
+.remit-app .radio-card.selected { border-color: var(--accent); background: rgba(176, 157, 255, 0.05); }
+.remit-app .radio-card input { margin-top: 3px; accent-color: var(--accent); }
+
+.remit-app .sig-zone { display: flex; align-items: center; gap: 14px; padding: 12px; background: var(--bg-2); border: 1px dashed var(--border); border-radius: 8px; }
+
+/* Modal */
+.remit-app-modal-backdrop { position: fixed; inset: 0; background: rgba(4, 4, 8, 0.72); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; z-index: 200; animation: remit-fadeIn 0.2s cubic-bezier(.2, .8, .2, 1); }
+@keyframes remit-fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.remit-app-modal { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 14px; max-height: 90vh; overflow: auto; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7); animation: remit-modalIn 0.3s cubic-bezier(.2, .8, .2, 1); color: var(--text); font-family: var(--font-geist), sans-serif; }
+@keyframes remit-modalIn { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+.remit-app-modal .modal-hdr { display: flex; justify-content: space-between; align-items: flex-start; padding: 18px 20px; border-bottom: 1px solid var(--border); }
+.remit-app-modal .modal-footer { display: flex; justify-content: flex-end; gap: 8px; padding: 14px 20px; border-top: 1px solid var(--border); }
+.remit-app-modal .fx-form { padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; }
+.remit-app-modal .fx-form-row { display: grid; grid-template-columns: 180px 1fr; gap: 16px; align-items: center; }
+.remit-app-modal .fx-form-row .micro-label { margin-bottom: 0; font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--mono); }
+.remit-app-modal .fx-form-row .hint { display: block; font-size: 10px; color: var(--text-3); text-transform: none; letter-spacing: normal; margin-top: 2px; font-family: var(--mono); }
+.remit-app-modal .input-group { display: flex; align-items: stretch; background: var(--bg-2); border: 1px solid var(--border); border-radius: 7px; overflow: hidden; }
+.remit-app-modal .input-group:focus-within { border-color: var(--accent); }
+.remit-app-modal .input-group .prefix { padding: 0 10px; display: flex; align-items: center; color: var(--text-3); background: var(--surface); border-right: 1px solid var(--border); font-family: var(--mono); }
+.remit-app-modal .input-group .field { border: none; background: transparent; border-radius: 0; width: 100%; padding: 8px 10px; font-size: 13px; color: var(--text); }
+.remit-app-modal .field { width: 100%; background: var(--bg-2); border: 1px solid var(--border); border-radius: 7px; padding: 8px 10px; font-size: 13px; color: var(--text); }
+.remit-app-modal .field:focus { outline: none; border-color: var(--accent); }
+.remit-app-modal .fx-readout-live { margin-top: 10px; padding: 14px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 9px; font-size: 12.5px; }
+.remit-app-modal .fx-readout-live .fx-l { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--border); color: var(--text-2); }
+.remit-app-modal .fx-readout-live .fx-l:last-child { border-bottom: none; }
+.remit-app-modal .fx-readout-live .fx-l.total { padding-top: 10px; margin-top: 4px; border-top: 1px solid var(--border); border-bottom: none; color: var(--text); font-weight: 500; font-size: 13.5px; }
+.remit-app-modal .fx-warn { margin-top: 12px; padding: 10px 12px; background: rgba(255, 154, 213, 0.06); border: 1px solid rgba(255, 154, 213, 0.2); border-radius: 8px; font-size: 11.5px; color: var(--text-2); }
+.remit-app-modal .fx-warn b { color: var(--accent-3); }
+.remit-app-modal .screen-crumb { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.12em; font-family: var(--mono); }
+.remit-app-modal .btn { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 7px; font-size: 12.5px; border: 1px solid var(--border-strong); background: transparent; color: var(--text); font-family: inherit; }
+.remit-app-modal .btn:hover:not(:disabled) { background: var(--surface); }
+.remit-app-modal .btn-ghost { border-color: var(--border); color: var(--text-2); }
+.remit-app-modal .btn-accent { background: var(--accent); color: #0a0a10; border-color: var(--accent); font-weight: 500; }
+.remit-app-modal .icon-btn { background: transparent; border: none; color: var(--text-3); font-size: 20px; padding: 0 8px; }
+.remit-app-modal .kbd { font-family: var(--mono); font-size: 10.5px; padding: 1px 5px; border-radius: 4px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); color: var(--text-3); margin-left: 4px; }
+.remit-app-modal .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* Palette (command menu) */
+.remit-app-palette { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 12px; width: 580px; overflow: hidden; box-shadow: 0 30px 100px -20px rgba(0, 0, 0, 0.8); animation: remit-modalIn 0.25s cubic-bezier(.2, .8, .2, 1); margin-top: -18vh; color: var(--text); font-family: var(--font-geist), sans-serif; }
+.remit-app-palette .palette-input { width: 100%; background: transparent; border: none; padding: 16px 20px; font-size: 14px; color: var(--text); border-bottom: 1px solid var(--border); outline: none; font-family: inherit; }
+.remit-app-palette .palette-list { max-height: 360px; overflow-y: auto; padding: 6px; }
+.remit-app-palette .palette-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 7px; font-size: 13px; cursor: pointer; transition: background 0.1s; }
+.remit-app-palette .palette-item.sel { background: rgba(176, 157, 255, 0.1); }
+.remit-app-palette .palette-icon { width: 16px; font-size: 11px; color: var(--text-3); font-family: var(--mono); }
+.remit-app-palette .kbd-group { display: flex; gap: 3px; }
+.remit-app-palette .kbd { font-family: var(--mono); font-size: 10.5px; padding: 1px 5px; border-radius: 4px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); color: var(--text-3); }
+.remit-app-palette .palette-foot { display: flex; gap: 16px; padding: 8px 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-3); font-family: var(--mono); }
+
+/* Import */
+.remit-app .import-steps { display: flex; gap: 20px; padding: 24px; border-bottom: 1px solid var(--border); }
+.remit-app .imp-step { display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--text-3); }
+.remit-app .imp-step.active { color: var(--text); }
+.remit-app .imp-dot { width: 22px; height: 22px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-size: 11px; font-family: var(--mono); }
+.remit-app .imp-step.active .imp-dot { background: var(--accent); color: #0a0a10; border-color: var(--accent); }
+.remit-app .imp-step.done .imp-dot { background: var(--accent-2); color: #0a0a10; border-color: var(--accent-2); }
+.remit-app .dropzone { padding: 60px; border: 2px dashed var(--border-strong); border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.2s; }
+.remit-app .dropzone:hover { border-color: var(--accent); background: rgba(176, 157, 255, 0.03); }
+.remit-app .confirm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.remit-app .confirm-card { padding: 12px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 8px; }
+
+/* Toasts */
+.remit-app-toast-host { position: fixed; bottom: 24px; right: 24px; display: flex; flex-direction: column; gap: 8px; z-index: 300; pointer-events: none; font-family: var(--font-geist), sans-serif; color: var(--text); }
+.remit-app-toast-host .toast { background: #0e0e16; border: 1px solid rgba(255, 255, 255, 0.12); padding: 10px 14px; border-radius: 9px; font-size: 13px; display: flex; align-items: center; gap: 10px; box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.6); pointer-events: auto; animation: remit-toastIn 0.3s cubic-bezier(.2, .8, .2, 1); min-width: 240px; }
+@keyframes remit-toastIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.remit-app-toast-host .toast-action { background: transparent; border: none; color: #b09dff; font-size: 12px; margin-left: auto; font-family: inherit; }
+
+/* Scrollbar */
+.remit-app ::-webkit-scrollbar { width: 8px; height: 8px; }
+.remit-app ::-webkit-scrollbar-track { background: transparent; }
+.remit-app ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+.remit-app ::-webkit-scrollbar-thumb:hover { background: var(--text-3); }

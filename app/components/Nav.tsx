@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Nav() {
@@ -27,14 +28,15 @@ export default function Nav() {
       <a href="#faq" className="hide-sm">
         FAQ
       </a>
-      <button
+      <Link
+        href="/app"
         className="btn btn-accent"
         data-hover
-        style={{ padding: "8px 16px", fontSize: 13 }}
+        style={{ padding: "8px 16px", fontSize: 13, textDecoration: "none" }}
       >
-        Start free
+        Open app
         <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, opacity: 0.7 }}>↗</span>
-      </button>
+      </Link>
     </nav>
   );
 }
